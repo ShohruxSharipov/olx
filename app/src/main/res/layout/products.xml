@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="110dp"
+        android:layout_height="137dp"
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="4dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/describtion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="describtion"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="122dp" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="101000 y.e."
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="153dp" />
+</androidx.appcompat.widget.LinearLayoutCompat>
