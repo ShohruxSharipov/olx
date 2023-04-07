@@ -1,5 +1,6 @@
 package com.example.olx.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,26 +8,40 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.olx.Categories.Categories
+import com.example.olx.Categories.Item
 import com.example.olx.R
+import com.example.olx.databinding.FragmentHomeBinding
+import com.example.olx.databinding.FragmentPurchaseBinding
+import com.example.olx.databinding.ProductsBinding
 
-class Adapter2(var list:MutableList<Categories>) : RecyclerView.Adapter<Adapter2.Holder>() {
+class Adapter2(var list:MutableList<Item>,var onClick: OnClick) : RecyclerView.Adapter<Adapter2.Holder>(){
 
-    open class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    open class Holder(binding: ProductsBinding) : RecyclerView.ViewHolder(binding.root) {
         var image = itemView.findViewById<ImageView>(R.id.picture)
         var desc = itemView.findViewById<TextView>(R.id.describtion)
-        var name = itemView.findViewById<TextView>(R.id.describtion)
+        var price = itemView.findViewById<TextView>(R.id.price)
+        var card = binding.card
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        TODO("Not yet implemented")
+        return Holder(ProductsBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return list.size
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        TODO("Not yet implemented")
+        holder.desc.text = list[position].Descr
+        holder.image.setImageResource(list[position].rasm)
+        holder.price.text = list[position].Price
+        holder.card.setOnClickListener {
+            onClick.setOnClick(list[position],position)
+        }
+    }
+
+    interface OnClick{
+        fun setOnClick(item: Item,position: Int)
     }
 
 
