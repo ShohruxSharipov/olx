@@ -20,7 +20,7 @@ class Adapter2(var list:MutableList<Item>,var onClick: OnClick) : RecyclerView.A
         var image = itemView.findViewById<ImageView>(R.id.picture)
         var desc = itemView.findViewById<TextView>(R.id.describtion)
         var price = itemView.findViewById<TextView>(R.id.price)
-        var card = binding.card
+        var cards = binding.card
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -35,7 +35,7 @@ class Adapter2(var list:MutableList<Item>,var onClick: OnClick) : RecyclerView.A
         holder.desc.text = list[position].Descr
         holder.image.setImageResource(list[position].rasm)
         holder.price.text = list[position].Price
-        holder.card.setOnClickListener {
+        holder.cards.setOnClickListener {
             onClick.setOnClick(list[position],position)
         }
     }

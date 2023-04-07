@@ -22,7 +22,6 @@ import com.example.olx.databinding.FragmentHomeBinding
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -31,15 +30,13 @@ private const val ARG_PARAM2 = "param2"
  */
 class Home : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: Item? = null
-//    private var param2: String? = null
+    private var param1: String? = null
     var advertisement = mutableListOf<Item>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-                param1 = it.getSerializable(ARG_PARAM1) as Item
-//            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getString(ARG_PARAM1)
         }
     }
 
@@ -58,14 +55,8 @@ class Home : Fragment() {
         var adapter = AdapterCl(list)
         var adapter2 = Adapter2(add(),object : Adapter2.OnClick{
             override fun setOnClick(item: Item, position: Int) {
-                val fr = Purchase()
-                val bundle = bundleOf()
-                bundle.putString("item",item.Price)
-                fr.arguments = bundle
-                parentFragmentManager.beginTransaction().replace(R.id.main,Purchase())
-                    .addToBackStack("Home")
-                    .commit()
-                Log.d("TAG", "setOnClick: ${bundle.toString()}")
+                Log.d("teg", "setOnClick: ${item.Price}")
+                parentFragmentManager.beginTransaction().replace(R.id.main,Purchase.newInstance(item)).commit()
             }
 
         })
@@ -85,45 +76,44 @@ class Home : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: Item) =
+        fun newInstance(param1: String, param2: String) =
             Home().apply {
                 arguments = Bundle().apply {
-                    putSerializable(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
+                    putString(ARG_PARAM1, param1)
                 }
             }
     }
     fun add():MutableList<Item>{
-        advertisement.add(Item(R.drawable.img,"Malibu yangi takoy","90 000$",""))
-        advertisement.add(Item(R.drawable.img,"3 ta qo'y","1 000$",""))
-        advertisement.add(Item(R.drawable.img,"iPhone 7 ishlatilmagan","300$",""))
-        advertisement.add(Item(R.drawable.img,"Velik","200$",""))
-        advertisement.add(Item(R.drawable.img,"Furniture","500$",""))
-        advertisement.add(Item(R.drawable.img,"Uy","150 000$",""))
-        advertisement.add(Item(R.drawable.img,"Patinka","90$",""))
-        advertisement.add(Item(R.drawable.img,"Krasovka","23$",""))
-        advertisement.add(Item(R.drawable.img,"Mushuk","tekin",""))
-        advertisement.add(Item(R.drawable.img,"KAMAZ","110 000$",""))
-        advertisement.add(Item(R.drawable.img,"Malibu yangi takoy","90 000$",""))
-        advertisement.add(Item(R.drawable.img,"3 ta qo'y","1 000$",""))
-        advertisement.add(Item(R.drawable.img,"iPhone 7 ishlatilmagan","300$",""))
-        advertisement.add(Item(R.drawable.img,"Velik","200$",""))
-        advertisement.add(Item(R.drawable.img,"Furniture","500$",""))
-        advertisement.add(Item(R.drawable.img,"Uy","150 000$",""))
-        advertisement.add(Item(R.drawable.img,"Patinka","90$",""))
-        advertisement.add(Item(R.drawable.img,"Krasovka","23$",""))
-        advertisement.add(Item(R.drawable.img,"Mushuk","tekin",""))
-        advertisement.add(Item(R.drawable.img,"KAMAZ","110 000$",""))
-        advertisement.add(Item(R.drawable.img,"Malibu yangi takoy","90 000$",""))
-        advertisement.add(Item(R.drawable.img,"3 ta qo'y","1 000$",""))
-        advertisement.add(Item(R.drawable.img,"iPhone 7 ishlatilmagan","300$",""))
-        advertisement.add(Item(R.drawable.img,"Velik","200$",""))
-        advertisement.add(Item(R.drawable.img,"Furniture","500$",""))
-        advertisement.add(Item(R.drawable.img,"Uy","150 000$",""))
-        advertisement.add(Item(R.drawable.img,"Patinka","90$",""))
-        advertisement.add(Item(R.drawable.img,"Krasovka","23$",""))
-        advertisement.add(Item(R.drawable.img,"Mushuk","tekin",""))
-        advertisement.add(Item(R.drawable.img,"KAMAZ","110 000$",""))
+        advertisement.add(Item(R.drawable.img,"Malibu yangi takoy","90 000$","","transport"))
+        advertisement.add(Item(R.drawable.img,"3 ta qo'y","1 000$","","hayvonlar"))
+        advertisement.add(Item(R.drawable.img,"iPhone 7 ishlatilmagan","300$","","telefon"))
+        advertisement.add(Item(R.drawable.img,"Velik","200$","","transport"))
+        advertisement.add(Item(R.drawable.img,"Furniture","500$","","ko'chmas mulk"))
+        advertisement.add(Item(R.drawable.img,"Uy","150 000$","","ko'chmas mulk"))
+        advertisement.add(Item(R.drawable.img,"Patinka","90$","","Kiyim"))
+        advertisement.add(Item(R.drawable.img,"Krasovka","23$","","Kiyim"))
+        advertisement.add(Item(R.drawable.img,"Mushuk","tekin","","hayvonlar"))
+        advertisement.add(Item(R.drawable.img,"KAMAZ","110 000$","","transport"))
+        advertisement.add(Item(R.drawable.img,"Malibu yangi takoy","90 000$","","transport"))
+        advertisement.add(Item(R.drawable.img,"3 ta qo'y","1 000$","","hayvonlar"))
+        advertisement.add(Item(R.drawable.img,"iPhone 7 ishlatilmagan","300$","","telefon"))
+        advertisement.add(Item(R.drawable.img,"Velik","200$","","transport"))
+        advertisement.add(Item(R.drawable.img,"Furniture","500$","","ko'chmas mulk"))
+        advertisement.add(Item(R.drawable.img,"Uy","150 000$","","ko'chmas mulk"))
+        advertisement.add(Item(R.drawable.img,"Patinka","90$","","Kiyim"))
+        advertisement.add(Item(R.drawable.img,"Krasovka","23$","","Kiyim"))
+        advertisement.add(Item(R.drawable.img,"Mushuk","tekin","","hayvonlar"))
+        advertisement.add(Item(R.drawable.img,"KAMAZ","110 000$","","transport"))
+        advertisement.add(Item(R.drawable.img,"Malibu yangi takoy","90 000$","","transport"))
+        advertisement.add(Item(R.drawable.img,"3 ta qo'y","1 000$","","hayvonlar"))
+        advertisement.add(Item(R.drawable.img,"iPhone 7 ishlatilmagan","300$","","telefon"))
+        advertisement.add(Item(R.drawable.img,"Velik","200$","","transport"))
+        advertisement.add(Item(R.drawable.img,"Furniture","500$","","ko'chmas mulk"))
+        advertisement.add(Item(R.drawable.img,"Uy","150 000$","","ko'chmas mulk"))
+        advertisement.add(Item(R.drawable.img,"Patinka","90$","","Kiyim"))
+        advertisement.add(Item(R.drawable.img,"Krasovka","23$","","Kiyim"))
+        advertisement.add(Item(R.drawable.img,"Mushuk","tekin","","hayvonlar"))
+        advertisement.add(Item(R.drawable.img,"KAMAZ","110 000$","","transport"))
         return advertisement
     }
 }

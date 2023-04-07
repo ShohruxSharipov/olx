@@ -13,7 +13,6 @@ import com.example.olx.databinding.FragmentPurchaseBinding
     // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -37,8 +36,10 @@ class Purchase : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentPurchaseBinding.inflate(inflater,container,false)
-        val args = arguments
-//        val item = args!!.getString("item")
+        binding.imageView.setImageResource(param1!!.rasm)
+        binding.textView.text = param1!!.Price
+        binding.textView2.text = param1!!.Time
+        binding.textView3.text = param1!!.Descr
 
         return binding.root
     }
@@ -54,10 +55,12 @@ class Purchase : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+
+        fun newInstance(param1: Item) =
             Purchase().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putSerializable(ARG_PARAM1, param1)
+//                    putString(ARG_PARAM2, param2)
                 }
             }
     }
